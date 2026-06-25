@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+  <title>Popup de Países</title>
+  <style>
+    
+    html {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      height: 100%;
+      background-color: #f0f0f0;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      width: 100%;
+      box-sizing: border-box;
+      background-image: url("https://s3.eu-central-2.wasabisys.com/w.storage.screenshotapi.net/d3d7e__9u1el5s2664k_tpvn6f_hop_clickbank_net_515b4c47c6b8.png");
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      background-color: #f0f0f0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    
+    @media (max-width: 480px) {
+      body {
+        background-image: url("https://s3.eu-central-2.wasabisys.com/w.storage.screenshotapi.net/d3d7e__9u1el5s2664k_tpvn6f_hop_clickbank_net_e2302c562d02.png") !important;
+        background-size: cover !important;
+        background-position: center top !important;
+        background-attachment: scroll;
+      }
+    }
+  </style>
+  
+</head>
+<body>
+  
+<!-- Country Selection Popup -->
+<div id="country-popup-modern" style="display: none;">
+  <div class="country-popup-overlay-modern">
+    <div class="country-popup-container-modern">
+      <div class="country-popup-content-modern">
+        <h2 class="country-popup-title-modern">Select your Country</h2>
+        <p class="country-popup-message-modern">Please select your country to continue.</p>
+        
+        <div class="country-flags-grid-modern">
+          
+    <a href="https://d3d7e--9u1el5s2664k-tpvn6f.hop.clickbank.net" class="country-flag-item-modern ratoeira-trackable" onclick="return handleClick(event)">
+      <div class="flag-icon-modern flag-us-modern"></div>
+    </a>
+  
+    <a href="https://d3d7e--9u1el5s2664k-tpvn6f.hop.clickbank.net" class="country-flag-item-modern ratoeira-trackable" onclick="return handleClick(event)">
+      <div class="flag-icon-modern flag-ca-modern"></div>
+    </a>
+  
+    <a href="https://d3d7e--9u1el5s2664k-tpvn6f.hop.clickbank.net" class="country-flag-item-modern ratoeira-trackable" onclick="return handleClick(event)">
+      <div class="flag-icon-modern flag-gb-modern"></div>
+    </a>
+  
+    <a href="https://d3d7e--9u1el5s2664k-tpvn6f.hop.clickbank.net" class="country-flag-item-modern ratoeira-trackable" onclick="return handleClick(event)">
+      <div class="flag-icon-modern flag-au-modern"></div>
+    </a>
+  
+    <a href="https://d3d7e--9u1el5s2664k-tpvn6f.hop.clickbank.net" class="country-flag-item-modern ratoeira-trackable" onclick="return handleClick(event)">
+      <div class="flag-icon-modern flag-nz-modern"></div>
+    </a>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+<style type="text/css">
+  #country-popup-modern {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000001;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  #country-popup-modern.country-popup-visible-modern {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .country-popup-container-modern {
+    background: white;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    animation: countryPopupSlideIn 0.3s ease-out;
+    max-width: 450px;
+    min-width: 320px;
+    width: 100%;
+    max-height: 90vh;
+    text-align: center;
+    position: relative;
+    border: 1px solid #e2e8f0;
+    z-index: 10000002;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-out;
+    margin: auto;
+  }
+
+  #country-popup-modern.country-popup-visible-modern .country-popup-container-modern {
+    transform: scale(1);
+  }
+
+  .country-popup-overlay-modern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .country-popup-content-modern {
+    position: relative;
+    z-index: 1;
+  }
+
+  .country-popup-title-modern {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 12px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .country-popup-message-modern {
+    font-size: 15px;
+    color: #6b7280;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.4;
+  }
+
+  .country-flags-grid-modern {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+    gap: 4px;
+    margin: 20px 0;
+    padding: 4px;
+    max-width: 100%;
+    justify-items: center;
+  }
+
+  .country-flag-item-modern {
+    width: 45px;
+    height: 45px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+  }
+
+  .country-flag-item-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+  }
+
+  .flag-icon-modern {
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .flag-us-modern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23b22234' d='M0 0h100v100H0z'/%3E%3Cpath stroke='%23fff' stroke-width='7.69' d='M0 7.69h100M0 23.07h100M0 38.45h100M0 53.83h100M0 69.21h100M0 84.59h100M0 100h100'/%3E%3Cpath fill='%233c3b6e' d='M0 0h39v53.85H0z'/%3E%3Cg fill='%23fff'%3E%3Cpolygon points='6,8 7,11 10,11 8,13 9,16 6,14 3,16 4,13 2,11 5,11'/%3E%3Cpolygon points='19,8 20,11 23,11 21,13 22,16 19,14 16,16 17,13 15,11 18,11'/%3E%3Cpolygon points='32,8 33,11 36,11 34,13 35,16 32,14 29,16 30,13 28,11 31,11'/%3E%3Cpolygon points='12.5,18 13.5,21 16.5,21 14.5,23 15.5,26 12.5,24 9.5,26 10.5,23 8.5,21 11.5,21'/%3E%3Cpolygon points='25.5,18 26.5,21 29.5,21 27.5,23 28.5,26 25.5,24 22.5,26 23.5,23 21.5,21 24.5,21'/%3E%3Cpolygon points='6,28 7,31 10,31 8,33 9,36 6,34 3,36 4,33 2,31 5,31'/%3E%3Cpolygon points='19,28 20,31 23,31 21,33 22,36 19,34 16,36 17,33 15,31 18,31'/%3E%3Cpolygon points='32,28 33,31 36,31 34,33 35,36 32,34 29,36 30,33 28,31 31,31'/%3E%3Cpolygon points='12.5,38 13.5,41 16.5,41 14.5,43 15.5,46 12.5,44 9.5,46 10.5,43 8.5,41 11.5,41'/%3E%3Cpolygon points='25.5,38 26.5,41 29.5,41 27.5,43 28.5,46 25.5,44 22.5,46 23.5,43 21.5,41 24.5,41'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .flag-ca-modern {
+    background-image: url("https://flagcdn.com/w320/ca.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .flag-gb-modern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23012169' d='M0 0h100v100H0z'/%3E%3Cpath fill='none' stroke='%23fff' stroke-width='12' d='m0 0 100 100m0-100L0 100'/%3E%3Cpath fill='none' stroke='%23C8102E' stroke-width='8' d='m0 0 100 100m0-100L0 100'/%3E%3Cpath fill='none' stroke='%23fff' stroke-width='20' d='M50 0v100M0 50h100'/%3E%3Cpath fill='none' stroke='%23C8102E' stroke-width='12' d='M50 0v100M0 50h100'/%3E%3C/svg%3E");
+  }
+
+  .flag-au-modern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23012169' d='M0 0h100v100H0z'/%3E%3Cpath fill='%23012169' d='M0 0h50v50H0z'/%3E%3Cpath fill='none' stroke='%23fff' stroke-width='6' d='m0 0 50 50m0-50L0 50'/%3E%3Cpath fill='none' stroke='%23C8102E' stroke-width='4' d='m0 0 50 50m0-50L0 50'/%3E%3Cpath fill='none' stroke='%23fff' stroke-width='10' d='M25 0v50M0 25h50'/%3E%3Cpath fill='none' stroke='%23C8102E' stroke-width='6' d='M25 0v50M0 25h50'/%3E%3Cpolygon fill='%23fff' points='75,25 77,22 80,25 77,28'/%3E%3Cpolygon fill='%23fff' points='85,15 86,13 88,15 86,17'/%3E%3Cpolygon fill='%23fff' points='82,35 83,33 85,35 83,37'/%3E%3Cpolygon fill='%23fff' points='90,40 91,38 93,40 91,42'/%3E%3Cpolygon fill='%23fff' points='65,60 67,57 70,60 67,63'/%3E%3Cpolygon fill='%23fff' points='80,70 82,67 85,70 82,73'/%3E%3C/svg%3E");
+  }
+
+  .flag-nz-modern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23012169' d='M0 0h100v100H0z'/%3E%3Cpath fill='%23012169' d='M0 0h50v50H0z'/%3E%3Cpath fill='none' stroke='%23fff' stroke-width='6' d='m0 0 50 50m0-50L0 50'/%3E%3Cpath fill='none' stroke='%23C8102E' stroke-width='4' d='m0 0 50 50m0-50L0 50'/%3E%3Cpath fill='none' stroke='%23fff' stroke-width='10' d='M25 0v50M0 25h50'/%3E%3Cpath fill='none' stroke='%23C8102E' stroke-width='6' d='M25 0v50M0 25h50'/%3E%3Cpolygon fill='%23fff' points='75,25 77,22 80,25 77,28'/%3E%3Cpolygon fill='%23C8102E' points='76,25 77,24 78,25 77,26'/%3E%3Cpolygon fill='%23fff' points='85,15 86,13 88,15 86,17'/%3E%3Cpolygon fill='%23C8102E' points='86,15 86,14 87,15 86,16'/%3E%3Cpolygon fill='%23fff' points='82,40 83,38 85,40 83,42'/%3E%3Cpolygon fill='%23C8102E' points='83,40 83,39 84,40 83,41'/%3E%3Cpolygon fill='%23fff' points='65,35 66,33 68,35 66,37'/%3E%3Cpolygon fill='%23C8102E' points='66,35 66,34 67,35 66,36'/%3E%3C/svg%3E");
+  }
+
+  /* Bandeiras da América Latina */
+  .flag-br-modern {
+    background-image: url("https://flagcdn.com/w320/br.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flag-mx-modern {
+    background-image: url("https://flagcdn.com/w320/mx.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flag-ar-modern {
+    background-image: url("https://flagcdn.com/w320/ar.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flag-cl-modern {
+    background-image: url("https://flagcdn.com/w320/cl.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flag-co-modern {
+    background-image: url("https://flagcdn.com/w320/co.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flag-pe-modern {
+    background-image: url("https://flagcdn.com/w320/pe.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flag-uy-modern {
+    background-image: url("https://flagcdn.com/w320/uy.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Bandeiras da Europa */
+  .flag-de-modern {
+    background-image: url("https://flagcdn.com/w320/de.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flag-fr-modern {
+    background-image: url("https://flagcdn.com/w320/fr.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flag-es-modern {
+    background-image: url("https://flagcdn.com/w320/es.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flag-it-modern {
+    background-image: url("https://flagcdn.com/w320/it.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flag-pt-modern {
+    background-image: url("https://flagcdn.com/w320/pt.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Bandeiras da Ásia */
+  .flag-jp-modern {
+    background-image: url("https://flagcdn.com/w320/jp.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flag-cn-modern {
+    background-image: url("https://flagcdn.com/w320/cn.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .flag-in-modern {
+    background-image: url("https://flagcdn.com/w320/in.png");
+    background-size: cover;
+    background-position: center;
+  }
+
+  @keyframes countryPopupSlideIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .country-popup-container-modern {
+      padding: 24px;
+      margin: 16px;
+      max-width: none;
+    }
+
+    .country-popup-title-modern {
+      font-size: 20px;
+    }
+
+    .country-flags-grid-modern {
+      gap: 12px;
+    }
+
+    .country-flag-item-modern {
+      width: 70px;
+      height: 70px;
+    }
+
+    .flag-icon-modern {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .country-popup-container-modern {
+      padding: 20px;
+      margin: 12px;
+    }
+
+    .country-popup-title-modern {
+      font-size: 18px;
+    }
+
+    .country-popup-message-modern {
+      font-size: 14px;
+    }
+
+    .country-flags-grid-modern {
+      gap: 10px;
+    }
+
+    .country-flag-item-modern {
+      width: 65px;
+      height: 65px;
+    }
+
+    .flag-icon-modern {
+      width: 45px;
+      height: 45px;
+    }
+  }
+
+  
+</style>
+  
+<script>
+function getAffiliateUrl(baseUrl) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const separator = baseUrl.includes('?') ? '&' : '?';
+  return baseUrl + (urlParams.toString() ? separator + urlParams.toString() : '');
+}
+
+function delayedRedirectWithAnchor(url) {
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.style.display = 'none';
+  anchor.target = '_self';
+  document.body.appendChild(anchor);
+  anchor.click();
+  setTimeout(() => anchor.remove(), 500);
+}
+
+function handleClick(event) {
+  event.preventDefault();
+  const baseUrl = event.currentTarget.getAttribute('href');
+  const finalUrl = getAffiliateUrl(baseUrl);
+  setTimeout(() => {
+    delayedRedirectWithAnchor(finalUrl);
+  }, 150);
+  return false;
+}
+
+function showCountryPopupModern() {
+  const popup = document.getElementById('country-popup-modern');
+  if (popup) {
+    popup.style.display = 'flex';
+    popup.classList.add('country-popup-visible-modern');
+  }
+}
+
+function checkCountryPopupModern() {
+  showCountryPopupModern();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', checkCountryPopupModern);
+} else {
+  checkCountryPopupModern();
+}
+
+// Clique em qualquer lugar (popup e fundo)
+document.addEventListener('DOMContentLoaded', () => {
+  const baseUrl = 'https://d3d7e--9u1el5s2664k-tpvn6f.hop.clickbank.net';
+  let clickAlreadyFired = false;
+
+  const realLink = document.createElement('a');
+  realLink.href = getAffiliateUrl(baseUrl);
+  realLink.style.display = 'none';
+  realLink.target = '_self';
+  realLink.id = 'hidden-aff-link';
+  realLink.className = 'ratoeira-trackable';
+  document.body.appendChild(realLink);
+
+  document.body.addEventListener('click', (e) => {
+    const isButton = e.target.closest('.country-flag-item-modern, .ratoeira-trackable');
+    if (isButton || clickAlreadyFired) return;
+
+    clickAlreadyFired = true;
+    realLink.click();
+  });
+
+  const popup = document.getElementById('country-popup-modern');
+  if (popup) {
+    popup.addEventListener('click', (e) => {
+      const isButton = e.target.closest('.country-flag-item-modern, .ratoeira-trackable');
+      if (isButton || clickAlreadyFired) return;
+
+      clickAlreadyFired = true;
+      realLink.click();
+    });
+  }
+
+  // Criar overlay transparente para capturar cliques sobre iframes com z-index maior
+  const fullPageOverlay = document.createElement('div');
+  fullPageOverlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000000;
+    background: transparent;
+    pointer-events: auto;
+    cursor: pointer;
+  `;
+  
+  fullPageOverlay.addEventListener('click', (e) => {
+    if (clickAlreadyFired) return;
+    
+    const isPopupButton = e.target.closest('.country-flag-item-modern, .ratoeira-trackable');
+    
+    if (!isPopupButton) {
+      clickAlreadyFired = true;
+      // Usar getAffiliateUrl para garantir parâmetros
+      realLink.href = getAffiliateUrl(baseUrl);
+      realLink.click();
+    }
+  });
+  
+  document.body.appendChild(fullPageOverlay);
+});
+</script>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KTZC9N9T');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KTZC9N9T"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</body>
+</html>
